@@ -1,0 +1,71 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+enum LinkStatus {
+  available
+  sold
+}
+
+enum PaymentIntentStatus {
+  pending
+  completed
+  failed
+  canceled
+}
+
+model Link {
+  id         Int        @id @default(autoincrement())
+  link       String     @unique @db.VarChar(768)
+  status     LinkStatus @default(available)
+  assignedTo String?    @map("assigned_to") @db.VarChar(191)
+  paymentId  String?    @unique @map("payment_id") @db.VarChar(191)
+  assignedAt DateTime?  @map("assigned_at")
+  createdAt  DateTime   @default(now()) @map("created_at")
+  order      Order?
+
+  @@index([status, id])
+  @@map("links")
+}
+
+model PaymentIntent {
+  id             Int                 @id @default(autoincrement())
+  invoiceId      String              @unique @map("invoice_id") @db.VarChar(191)
+  paymentUrl     String              @map("payment_url") @db.VarChar(768)
+  customerName   String              @map("customer_name") @db.VarChar(191)
+  email          String              @db.VarChar(191)
+  phone          String              @db.VarChar(64)
+  amount         Int
+  status         PaymentIntentStatus @default(pending)
+  transactionId  String?             @map("transaction_id") @db.VarChar(191)
+  paymentMethod  String?             @map("payment_method") @db.VarChar(191)
+  createdAt      DateTime            @default(now()) @map("created_at")
+  updatedAt      DateTime            @updatedAt @map("updated_at")
+
+  @@index([email])
+  @@index([phone])
+  @@index([status, createdAt])
+  @@map("payment_intents")
+}
+
+model Order {
+  id           Int      @id @default(autoincrement())
+  customerName String   @map("customer_name") @db.VarChar(191)
+  email        String   @db.VarChar(191)
+  phone        String   @db.VarChar(64)
+  paymentId    String   @unique @map("payment_id") @db.VarChar(191)
+  linkId       Int      @unique @map("link_id")
+  assignedLink String   @map("assigned_link") @db.VarChar(768)
+  createdAt    DateTime @default(now()) @map("created_at")
+  link         Link     @relation(fields: [linkId], references: [id], onDelete: Restrict)
+
+  @@index([customerName])
+  @@unique([email])
+  @@unique([phone])
+  @@map("orders")
+}
