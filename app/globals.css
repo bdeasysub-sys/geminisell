@@ -724,6 +724,27 @@ a {
   font-weight: 850;
 }
 
+.checkout-link-card {
+  display: grid;
+  gap: 10px;
+  padding: 12px;
+  border: 1px solid rgba(191, 219, 254, 0.24);
+  border-radius: 8px;
+  background: rgba(3, 7, 18, 0.28);
+}
+
+.checkout-link-card span {
+  color: #d1fae5;
+  font-size: 0.78rem;
+  font-weight: 850;
+  text-transform: uppercase;
+}
+
+.checkout-copy-button {
+  min-height: 44px;
+  gap: 8px;
+}
+
 .reveal {
   opacity: 0;
   transform: translateY(18px);

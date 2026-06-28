@@ -1,262 +1,268 @@
+import type { Metadata, Viewport } from "next";
 import Script from "next/script";
 import { getCheckoutUrl } from "@/lib/env";
+import "./landing.css";
+
+export const metadata: Metadata = {
+  title: "BD Subscription HUB | Gemini AI Pro (18 মাস)",
+  description:
+    "bdsubscriptionhub-এ Gemini AI Pro 18 মাসের প্রিমিয়াম এক্সেস কিনুন। দ্রুত ডেলিভারি, নিরাপদ একাউন্ট এবং ২৪/৭ সাপোর্ট।",
+  openGraph: {
+    title: "BD Subscription HUB | Gemini AI Pro (18 মাস)",
+    description:
+      "bdsubscriptionhub-এ Gemini AI Pro 18 মাসের প্রিমিয়াম এক্সেস কিনুন। দ্রুত ডেলিভারি, নিরাপদ একাউন্ট এবং ২৪/৭ সাপোর্ট।",
+    type: "website"
+  }
+};
+
+export const viewport: Viewport = {
+  themeColor: "#050816"
+};
 
 export default function HomePage() {
   const checkoutUrl = getCheckoutUrl();
 
   return (
-    <>
+    <div className="landing-page">
       <header className="site-header">
-        <nav className="container nav" aria-label="Primary navigation">
-          <a href="#top" className="logo" aria-label="EasySub home">
-            <span className="logo-mark">E</span>
-            <span>EasySub</span>
+        <div className="container nav-wrap">
+          <a href="#home" className="brand" aria-label="BD Subscription HUB হোম">
+            <span className="brand-mark">B</span>
+            <span>BD Subscription HUB</span>
           </a>
-          <div className="nav-links" aria-label="Page sections">
-            <a href="#features">Features</a>
-            <a href="#why">Why EasySub</a>
-            <a href="#how">How It Works</a>
+          <nav className="main-nav" aria-label="Primary Navigation">
+            <a href="#home">Home</a>
+            <a href="#features">সুবিধাসমূহ</a>
             <a href="#faq">FAQ</a>
-          </div>
-          <a className="btn btn-primary nav-cta js-order" href={checkoutUrl}>
+          </nav>
+          <a href={checkoutUrl} className="btn btn-small">
             Order Now
           </a>
-        </nav>
+        </div>
       </header>
 
-      <main id="top">
-        <section className="hero">
+      <main id="home">
+        <section className="hero section">
           <div className="container hero-grid">
-            <div className="hero-content reveal">
-              <div className="badge">Trusted Digital Subscription Provider</div>
-              <h1>
-                <span className="gradient-text">Google Gemini Pro</span> - 18 Months Access
-              </h1>
-              <p className="hero-copy">
-                Get Gemini Advanced, 5TB Google One Storage, AI in Gmail, Docs &amp; Sheets.
+            <div className="hero-copy fade-in">
+              <p className="eyebrow">Premium AI Access • Limited Time Offer</p>
+              <h1>Gemini AI Pro (18 মাস)</h1>
+              <p className="hero-text">
+                একবার কিনুন, ১৮ মাস নির্ভরতার সাথে ব্যবহার করুন। দ্রুত, নিরাপদ ও
+                সর্বোচ্চ পারফরম্যান্সে আপনার ডিজিটাল কাজগুলো সম্পন্ন করুন।
               </p>
               <div className="hero-actions">
-                <a className="btn btn-primary js-order" href={checkoutUrl}>
-                  Order Now
+                <a href={checkoutUrl} className="btn">
+                  এখনই অর্ডার করুন
                 </a>
-                <span className="delivery-note">
-                  <span>&#9679;</span> Secure ZiniPay checkout enabled
-                </span>
+                <a href="#features" className="btn btn-secondary">
+                  বিস্তারিত দেখুন
+                </a>
               </div>
+              <ul className="hero-badges">
+                <li>⚡ ১৮ মাস ভ্যালিড</li>
+                <li>🔒 Secure Access</li>
+                <li>📦 Instant Delivery</li>
+              </ul>
             </div>
 
-            <div className="hero-visual reveal" aria-label="Gemini Pro subscription visual">
-              <div className="hero-image-shell">
-                <picture>
-                  <source srcSet="/assets/easysub-gemini-hero.png" type="image/webp" />
-                  <img
-                    src="/assets/easysub-gemini-hero.png"
-                    width="1200"
-                    height="658"
-                    alt="Premium digital AI subscription dashboard visual"
-                    fetchPriority="high"
-                  />
-                </picture>
-              </div>
-              <aside className="price-card" aria-label="Gemini Pro pricing card">
-                <div className="price-row">
-                  <div>
-                    <p className="price-label">18 Months Access</p>
-                    <p className="price">
-                      790 <small>tk</small>
-                    </p>
-                  </div>
-                  <span className="save-pill">Limited stock</span>
+            <div className="hero-visual fade-in">
+              <div className="orb orb-one"></div>
+              <div className="orb orb-two"></div>
+              <div className="video-card">
+                <div className="video-label">এখানে একটি ডেমো ভিডিও দেখুন</div>
+                <div className="video-frame">
+                  <iframe
+                    src="https://www.youtube.com/embed/5bnBpu8WgWA"
+                    title="YouTube video player"
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowFullScreen
+                  ></iframe>
                 </div>
-                <a className="btn btn-primary js-order" href={checkoutUrl}>
-                  Order Now
-                </a>
-              </aside>
+              </div>
             </div>
           </div>
         </section>
 
-        <section className="section" id="features">
+        <section id="features" className="section">
           <div className="container">
-            <div className="section-heading reveal">
-              <p className="eyebrow">Product Features</p>
-              <h2>Everything included for premium AI productivity.</h2>
-              <p className="section-text">
-                A complete Gemini Pro access bundle made for creators, students, professionals
-                and teams who want smarter Google Workspace tools.
-              </p>
+            <div className="section-heading fade-in">
+              <p className="eyebrow">সুবিধাসমূহ</p>
+              <h2>একাধিক প্রিমিয়াম সুবিধা একসাথে</h2>
             </div>
-            <div className="feature-grid">
-              {[
-                "Gemini Advanced Access",
-                "5TB Google One Storage",
-                "AI in Gmail",
-                "AI in Google Docs",
-                "AI in Google Sheets",
-                "Priority Access to New AI Features",
-                "Multi-Device Access",
-                "Fast Account Delivery"
-              ].map((feature) => (
-                <article className="feature-card reveal" key={feature}>
-                  <span className="check-icon">&#10003;</span>
-                  {feature}
-                </article>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section className="section" id="why">
-          <div className="container">
-            <div className="section-heading reveal">
-              <p className="eyebrow">Why Choose EasySub</p>
-              <h2>Built for smooth, secure digital delivery.</h2>
-            </div>
-            <div className="why-grid">
-              <article className="why-card reveal">
-                <div className="card-icon">&#8595;</div>
-                <h3>Instant Delivery</h3>
-                <p>Receive your subscription details quickly after the order is confirmed.</p>
+            <div className="card-grid">
+              <article className="glass-card fade-in">
+                <h3>✔ Gemini AI Pro Access</h3>
+                <p>প্রিমিয়াম AI টুলের সম্পূর্ণ এক্সেস পেয়ে যান সাশ্রয়ী মূল্যে।</p>
               </article>
-              <article className="why-card reveal">
-                <div className="card-icon">*</div>
-                <h3>Trusted Seller</h3>
-                <p>EasySub focuses on reliable access and clear customer communication.</p>
+              <article className="glass-card fade-in">
+                <h3>✔ দ্রুত ডেলিভারি</h3>
+                <p>অর্ডার করার কিছুক্ষণের মধ্যেই আপনার এক্সেস নিশ্চিত করা হয়।</p>
               </article>
-              <article className="why-card reveal">
-                <div className="card-icon">$</div>
-                <h3>Secure Payment</h3>
-                <p>Pay through ZiniPay and receive access only after verification succeeds.</p>
+              <article className="glass-card fade-in">
+                <h3>✔ নিরাপদ একাউন্ট</h3>
+                <p>সিকিউর লগইন ও বিশ্বস্ত প্রক্রিয়ার মাধ্যমে আপনার তথ্য সুরক্ষিত।</p>
               </article>
-              <article className="why-card reveal">
-                <div className="card-icon">?</div>
-                <h3>Customer Support</h3>
-                <p>Support is included for order help and subscription delivery questions.</p>
+              <article className="glass-card fade-in">
+                <h3>✔ ২৪/৭ সাপোর্ট</h3>
+                <p>যেকোনো সমস্যার সমাধানে আমাদের টিম সবসময় প্রস্তুত।</p>
+              </article>
+              <article className="glass-card fade-in">
+                <h3>✔ Trusted Service</h3>
+                <p>সুনির্দিষ্ট প্রক্রিয়া, পরিষ্কার যোগাযোগ এবং নির্ভরযোগ্য সেবা।</p>
+              </article>
+              <article className="glass-card fade-in">
+                <h3>✔ Instant Delivery</h3>
+                <p>পেমেন্টের পর অটো ডেলিভারি।</p>
               </article>
             </div>
           </div>
         </section>
 
-        <section className="section" id="how">
+        <section className="section">
           <div className="container">
-            <div className="section-heading reveal">
-              <p className="eyebrow">How It Works</p>
-              <h2>From order to AI access in four simple steps.</h2>
+            <div className="section-heading fade-in">
+              <p className="eyebrow">কেন bdsubscriptionhub?</p>
+              <h2>আপনার জন্য কেন এটি সেরা পছন্দ</h2>
             </div>
-            <div className="steps">
-              <article className="step-card reveal" data-step="01">
-                <div className="step-number">1</div>
-                <h3>Click Order Now</h3>
-                <p>Start your checkout for the Gemini Pro 18 months plan.</p>
+            <div className="card-grid why-grid">
+              <article className="glass-card fade-in">
+                <h3>প্রিমিয়াম মান</h3>
+                <p>নতুন প্রযুক্তি উপযোগী, উচ্চমানের ব্যবহারকারীর অভিজ্ঞতা।</p>
               </article>
-              <article className="step-card reveal" data-step="02">
-                <div className="step-number">2</div>
-                <h3>Pay with ZiniPay</h3>
-                <p>Enter customer details and complete hosted payment securely.</p>
+              <article className="glass-card fade-in">
+                <h3>সাশ্রয়ী মূল্য</h3>
+                <p>১৮ মাসের এক্সেস একদম আরামদায়ক মূল্যে।</p>
               </article>
-              <article className="step-card reveal" data-step="03">
-                <div className="step-number">3</div>
-                <h3>Verify Payment</h3>
-                <p>The app verifies your invoice before assigning inventory.</p>
+              <article className="glass-card fade-in">
+                <h3>দ্রুত সহায়তা</h3>
+                <p>প্রশ্ন থাকলে আমরা দিনে-রাতে সাহায্য করি।</p>
               </article>
-              <article className="step-card reveal" data-step="04">
-                <div className="step-number">4</div>
-                <h3>Start Using Gemini Pro</h3>
-                <p>Sign in and begin using Gemini Advanced and Google AI tools.</p>
+              <article className="glass-card fade-in">
+                <h3>শান্তি ও নির্ভরযোগ্যতা</h3>
+                <p>সঠিক তথ্য, সঠিক সময় এবং নির্ভরযোগ্য সেবা নিশ্চিত করি।</p>
               </article>
             </div>
           </div>
         </section>
 
-        <section className="section" id="faq">
+        <section className="section">
           <div className="container">
-            <div className="section-heading reveal">
-              <p className="eyebrow">FAQ</p>
-              <h2>Quick answers before you order.</h2>
+            <div className="section-heading fade-in">
+              <p className="eyebrow">কিভাবে অর্ডার করবেন?</p>
+              <h2>তিনটি সহজ ধাপে সম্পন্ন করুন</h2>
             </div>
-            <div className="faq-grid">
-              <article className="faq-item reveal">
-                <h3>How long is the subscription valid?</h3>
-                <p>18 Months.</p>
+            <div className="timeline">
+              <article className="timeline-card fade-in">
+                <span className="step">Step 1</span>
+                <h3>অর্ডার করুন</h3>
+                <p>নির্বাচিত প্যাকেজটি ক্লিক করে অর্ডার প্রক্রিয়া শুরু করুন।</p>
               </article>
-              <article className="faq-item reveal">
-                <h3>How will I receive my account?</h3>
-                <p>On the payment success page after your ZiniPay invoice is verified.</p>
+              <article className="timeline-card fade-in">
+                <span className="step">Step 2</span>
+                <h3>পেমেন্ট সম্পন্ন করুন</h3>
+                <p>নিরাপদ পেমেন্ট পদ্ধতিতে আপনার অর্ডার নিশ্চিত করুন।</p>
               </article>
-              <article className="faq-item reveal">
-                <h3>Which payment methods are accepted?</h3>
-                <p>Available methods are shown on the hosted ZiniPay payment page.</p>
-              </article>
-              <article className="faq-item reveal">
-                <h3>Is support available?</h3>
-                <p>Yes, customer support is included.</p>
+              <article className="timeline-card fade-in">
+                <span className="step">Step 3</span>
+                <h3>ইমেইলে Gemini AI Pro পেয়ে যান</h3>
+                <p>অর্ডার নিশ্চিত হলে আপনার ইমেইলে এক্সেস ডিটেইলস পেয়ে যান।</p>
               </article>
             </div>
           </div>
         </section>
 
-        <section className="section" aria-labelledby="final-cta-title">
+        <section id="pricing" className="section">
           <div className="container">
-            <div className="final-cta reveal">
-              <p className="eyebrow">Ready for premium AI access?</p>
-              <h2 id="final-cta-title">Start Using Gemini Pro Today</h2>
-              <p className="section-text final-cta-copy">
-                Secure your 18 months access and get delivery after order confirmation.
-              </p>
-              <div className="final-actions">
-                <a className="btn btn-primary js-order" href={checkoutUrl}>
-                  Order Now
+            <div className="offer-card fade-in">
+              <div className="offer-header">
+                <span className="offer-label">BEST VALUE</span>
+                <h2>Gemini AI Pro</h2>
+                <p className="offer-copy">
+                  ১৮ মাসের প্রিমিয়াম সাবস্ক্রিপশন, দ্রুত ডেলিভারি, নিরাপদ একাউন্ট ও ২৪/৭
+                  সাপোর্ট সহ।
+                </p>
+              </div>
+              <div className="price-ring">
+                <div className="price-tag">৳ 590</div>
+                <p>এককালীন পেমেন্ট</p>
+              </div>
+              <div className="offer-buttons">
+                <a href={checkoutUrl} className="btn btn-primary">
+                  এখনই অর্ডার করুন
                 </a>
               </div>
+              <div className="offer-details">
+                <p>✔ ১৮ মাস এক্সেস • ✔ ইনস্ট্যান্ট ডেলিভারি • ✔ নিরাপদ সাপোর্ট</p>
+              </div>
+              <div className="offer-list">
+                <span>✔ Gemini AI Pro অ্যাক্সেস</span>
+                <span>✔ নিরাপদ ও বিশ্বস্ত ডিল</span>
+                <span>✔ ২৪/৭ সাপোর্ট</span>
+                <span>✔ এক্সপ্রেস এক্টিভেশন</span>
+                <span>✔ পেমেন্টের পর অটো ডেলিভারি</span>
+                <span>✔ নিজেই নিজেই অ্যাক্টিভ করতে পারবেন</span>
+                <span>✔ কোন ইমেইল বা পাসওয়ার্ড শেয়ার করতে হবে না</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="faq" className="section">
+          <div className="container">
+            <div className="section-heading fade-in">
+              <p className="eyebrow">FAQ</p>
+              <h2>সাধারণ প্রশ্নাবলী</h2>
+            </div>
+            <div className="faq-list">
+              <details className="faq-item fade-in" open>
+                <summary>Gemini AI Pro কীভাবে ব্যবহার করব?</summary>
+                <p>একবার অর্ডার করলে আপনার ইমেইলে এক্সেস ডিটেইলস পাঠানো হবে।</p>
+              </details>
+              <details className="faq-item fade-in">
+                <summary>ডেলিভারি কত দ্রুত?</summary>
+                <p>পেমেন্টের পর অটো ডেলিভারি।</p>
+              </details>
+              <details className="faq-item fade-in">
+                <summary>আমি কি একাধিক ডিভাইসে ব্যবহার করতে পারি?</summary>
+                <p>হ্যাঁ, আপনার একাউন্টের শর্ত অনুযায়ী একাধিক ডিভাইসে ব্যবহার করা যায়।</p>
+              </details>
+              <details className="faq-item fade-in">
+                <summary>অর্ডার করলে কি রিফান্ড পাওয়া যাবে?</summary>
+                <p>সাধারণত রিফান্ডের নীতি নির্ধারিত থাকবে। বিস্তারিত জানতে সাপোর্টে যোগাযোগ করুন।</p>
+              </details>
+              <details className="faq-item fade-in">
+                <summary>সাপোর্ট কিভাবে পাবো?</summary>
+                <p>Facebook, WhatsApp বা Telegram-এর মাধ্যমে সহজেই যোগাযোগ করতে পারেন।</p>
+              </details>
+              <details className="faq-item fade-in">
+                <summary>পেমেন্ট কীভাবে করব?</summary>
+                <p>নিরাপদ পেমেন্ট গেটওয়ের মাধ্যমে অর্ডার নিশ্চিত করুন।</p>
+              </details>
             </div>
           </div>
         </section>
       </main>
 
       <footer className="site-footer">
-        <div className="container footer-grid">
+        <div className="container footer-wrap">
           <div>
-            <a href="#top" className="logo" aria-label="EasySub home">
-              <span className="logo-mark">E</span>
-              <span>EasySub</span>
-            </a>
-            <p>&copy; 2026 EasySub. All Rights Reserved.</p>
+            <h3>bdsubscriptionhub</h3>
+            <p>Premium Digital Access, Simplified.</p>
           </div>
           <div className="footer-links">
-            <a href="#privacy" aria-label="Privacy Policy">
-              Privacy Policy
-            </a>
-            <a href="#terms" aria-label="Terms and Conditions">
-              Terms &amp; Conditions
-            </a>
+            <a href="#home">Facebook</a>
+            <a href="#home">WhatsApp</a>
+            <a href="#home">Telegram</a>
           </div>
+        </div>
+        <div className="container footer-bottom">
+          <p>© 2026 bdsubscriptionhub. All rights reserved.</p>
         </div>
       </footer>
 
-      <Script
-        id="landing-interactions"
-        strategy="afterInteractive"
-        dangerouslySetInnerHTML={{
-          __html: `
-            const revealItems = document.querySelectorAll(".reveal");
-
-            if ("IntersectionObserver" in window) {
-              const observer = new IntersectionObserver((entries) => {
-                entries.forEach((entry) => {
-                  if (entry.isIntersecting) {
-                    entry.target.classList.add("is-visible");
-                    observer.unobserve(entry.target);
-                  }
-                });
-              }, { threshold: 0.16 });
-
-              revealItems.forEach((item) => observer.observe(item));
-            } else {
-              revealItems.forEach((item) => item.classList.add("is-visible"));
-            }
-          `
-        }}
-      />
-    </>
+      <Script src="/landing/script.js" strategy="afterInteractive" />
+    </div>
   );
 }

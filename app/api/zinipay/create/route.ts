@@ -4,7 +4,7 @@ import { getZiniPayAmount } from "@/lib/env";
 import { prisma } from "@/lib/prisma";
 import { assertRateLimit } from "@/lib/rate-limit";
 import { readJson } from "@/lib/request";
-import { demoCheckoutSchema } from "@/lib/validation";
+import { checkoutSchema } from "@/lib/validation";
 import { createZiniPayPayment, ZINIPAY_INVOICE_COOKIE } from "@/lib/zinipay";
 
 export async function POST(request: NextRequest) {
@@ -15,7 +15,7 @@ export async function POST(request: NextRequest) {
       windowMs: 60 * 1000
     });
 
-    const input = demoCheckoutSchema.parse(await readJson(request));
+    const input = checkoutSchema.parse(await readJson(request));
 
     const existingCustomerOrder = await prisma.order.findFirst({
       where: {

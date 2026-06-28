@@ -1,6 +1,6 @@
 import { ApiError } from "@/lib/api-errors";
 
-const DEMO_CHECKOUT_URL = "/demo-checkout";
+const CHECKOUT_URL = "/checkout";
 
 export function getOptionalEnv(name: string) {
   const value = process.env[name];
@@ -22,7 +22,7 @@ export function getRequiredEnv(name: string) {
 }
 
 export function getCheckoutUrl() {
-  return DEMO_CHECKOUT_URL;
+  return CHECKOUT_URL;
 }
 
 export function getSiteUrl() {

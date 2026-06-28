@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { requireAdmin } from "@/lib/auth";
-import { assertFound, withApiErrorHandling } from "@/lib/api-errors";
+import { ApiError, assertFound, withApiErrorHandling } from "@/lib/api-errors";
 import { sendSubscriptionEmail } from "@/lib/email";
 import { prisma } from "@/lib/prisma";
 import { idParamSchema } from "@/lib/validation";
@@ -24,6 +24,14 @@ export async function POST(request: NextRequest, context: RouteContext) {
       email: order.email,
       assignedLink: order.assignedLink
     });
+
+    if (!email.sent) {
+      throw new ApiError(
+        502,
+        "internal_error",
+        email.reason ?? "Unable to send subscription email."
+      );
+    }
 
     return NextResponse.json({
       ok: true,

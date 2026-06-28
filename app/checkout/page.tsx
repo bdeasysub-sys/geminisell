@@ -17,7 +17,7 @@ type ZiniPayCreateResponse = {
   paymentUrl: string;
 };
 
-export default function DemoCheckoutPage() {
+export default function CheckoutPage() {
   const [customerName, setCustomerName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
@@ -77,11 +77,7 @@ export default function DemoCheckoutPage() {
               </div>
               <div>
                 <dt>Delivery</dt>
-                <dd>After verification</dd>
-              </div>
-              <div>
-                <dt>Duplicate rule</dt>
-                <dd>One email or phone per order</dd>
+                <dd>After verification Auto Delivery </dd>
               </div>
             </dl>
           </div>
@@ -132,7 +128,7 @@ export default function DemoCheckoutPage() {
             >
               {state.status === "loading" || state.status === "redirecting"
                 ? "Creating payment..."
-                : "Pay with ZiniPay"}
+                : "Pay with bKash"}
             </button>
 
             {state.status === "error" ? (
@@ -144,9 +140,7 @@ export default function DemoCheckoutPage() {
             {state.status === "redirecting" ? (
               <div className="checkout-result" role="status">
                 <p className="checkout-result-title">Redirecting to ZiniPay...</p>
-                <a href={state.payload.paymentUrl}>
-                  Continue to payment
-                </a>
+                <a href={state.payload.paymentUrl}>Continue to payment</a>
                 <p>Invoice {state.payload.invoiceId}</p>
               </div>
             ) : null}

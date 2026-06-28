@@ -24,6 +24,8 @@ app/
     login/page.tsx
     dashboard/page.tsx
     dashboard/AdminDashboard.tsx
+  checkout/page.tsx
+  payment/zinipay/return/page.tsx
   api/
     admin/
       login/route.ts
@@ -36,7 +38,9 @@ app/
       orders/route.ts
       orders/export/route.ts
       orders/[id]/resend-email/route.ts
-    demo-checkout/route.ts
+    zinipay/create/route.ts
+    zinipay/verify/route.ts
+    zinipay/webhook/route.ts
     webhooks/payment/route.ts
 lib/
   api-errors.ts
@@ -91,7 +95,7 @@ npm run dev
 Order buttons open:
 
 ```text
-/demo-checkout
+/checkout
 ```
 
 The checkout creates a hosted ZiniPay payment invoice:

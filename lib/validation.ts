@@ -45,7 +45,7 @@ export const idParamSchema = z.object({
   id: z.coerce.number().int().positive()
 });
 
-export const demoCheckoutSchema = z.object({
+export const checkoutSchema = z.object({
   customerName: nameSchema,
   email: emailSchema,
   phone: phoneSchema
@@ -55,8 +55,8 @@ export const ziniPayVerifySchema = z.object({
   invoiceId: invoiceIdSchema
 });
 
-export type DemoCheckoutInput = z.infer<typeof demoCheckoutSchema>;
-export type PaymentWebhookInput = DemoCheckoutInput & {
+export type CheckoutInput = z.infer<typeof checkoutSchema>;
+export type PaymentWebhookInput = CheckoutInput & {
   paymentId: string;
 };
 
@@ -68,7 +68,7 @@ export function parsePaymentWebhookPayload(payload: unknown): PaymentWebhookInpu
   const data = asRecord(record.data);
   const nestedCustomer = asRecord(data.customer);
 
-  return demoCheckoutSchema
+  return checkoutSchema
     .extend({
       paymentId: paymentIdSchema
     })

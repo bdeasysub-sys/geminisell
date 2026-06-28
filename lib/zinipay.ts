@@ -39,7 +39,7 @@ export async function createZiniPayPayment(input: ZiniPayCreatePaymentInput) {
     amount: input.amount,
     redirect_url: `${siteUrl}/payment/zinipay/return`,
     success_url: `${siteUrl}/payment/zinipay/return`,
-    cancel_url: `${siteUrl}/demo-checkout?payment=cancelled`,
+    cancel_url: `${siteUrl}/checkout?payment=cancelled`,
     webhook_url: `${siteUrl}/api/zinipay/webhook`,
     metadata: {
       product: "gemini-pro-18-months",

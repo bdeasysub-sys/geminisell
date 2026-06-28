@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { cookies } from "next/headers";
+import { CopyLinkButton } from "@/app/payment/zinipay/return/CopyLinkButton";
 import { ApiError } from "@/lib/api-errors";
 import { finalizeZiniPayInvoice } from "@/lib/zinipay-order";
 import { ZINIPAY_INVOICE_COOKIE } from "@/lib/zinipay";
@@ -39,24 +40,28 @@ export default async function PaymentReturnPage({ searchParams }: PaymentReturnP
           <section className="checkout-shell">
             <div className="checkout-copy">
               <p className="eyebrow">Payment Verified</p>
-              <h1>Your Gemini Pro access is ready.</h1>
+              <h1>Payment Successful</h1>
               <p>
-                Your ZiniPay payment was verified successfully. Keep this page open until you
-                save your subscription link.
+                Your ZiniPay payment was verified successfully. Your Gemini Pro subscription
+                link is ready below.
               </p>
             </div>
 
             <div className="checkout-form">
               <div className="checkout-result" role="status">
-                <p className="checkout-result-title">{result.message}</p>
-                <a href={result.order.assignedLink} target="_blank" rel="noreferrer">
-                  {result.order.assignedLink}
-                </a>
+                <p className="checkout-result-title">Payment Successful</p>
+                <div className="checkout-link-card">
+                  <span>Assigned Subscription Link</span>
+                  <a href={result.order.assignedLink} target="_blank" rel="noreferrer">
+                    {result.order.assignedLink}
+                  </a>
+                  <CopyLinkButton value={result.order.assignedLink} />
+                </div>
                 <p>
                   Order #{result.order.id} - {result.order.paymentId}
                 </p>
                 <p>
-                  Email {result.email.sent ? "sent" : "skipped"}
+                  Email {result.email.sent ? "sent" : result.email.skipped ? "skipped" : "delivery failed"}
                   {result.email.reason ? `: ${result.email.reason}` : "."}
                 </p>
               </div>
@@ -87,7 +92,7 @@ function PaymentError({ message }: { message: string }) {
             <span className="logo-mark">E</span>
             <span>EasySub</span>
           </Link>
-          <Link className="checkout-back" href="/demo-checkout">
+          <Link className="checkout-back" href="/checkout">
             Checkout
           </Link>
         </header>
@@ -103,7 +108,7 @@ function PaymentError({ message }: { message: string }) {
             <p className="checkout-alert checkout-alert-error" role="alert">
               {message}
             </p>
-            <Link className="btn btn-primary checkout-submit" href="/demo-checkout">
+            <Link className="btn btn-primary checkout-submit" href="/checkout">
               Return to Checkout
             </Link>
           </div>
