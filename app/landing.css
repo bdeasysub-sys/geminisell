@@ -76,7 +76,7 @@
   width: 2.2rem;
   height: 2.2rem;
   place-items: center;
-  border-radius: 0.75rem;
+  border-radius: 50%;
   background: linear-gradient(135deg, var(--accent), var(--accent-2));
   box-shadow: 0 10px 25px rgba(124, 77, 255, 0.25);
 }

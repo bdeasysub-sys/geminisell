@@ -7,6 +7,17 @@ export const metadata: Metadata = {
   description:
     "Order Google Gemini Pro 18 Months Access from EasySub with Gemini Advanced, 5TB Google One storage, AI in Gmail, Docs and Sheets, and fast delivery.",
   keywords: ["EasySub", "Google Gemini Pro", "Gemini Advanced", "5TB Google One", "digital subscription"],
+  icons: {
+    icon: [
+      {
+        url: "/favicon-bd-subscription-hub.png",
+        sizes: "64x64",
+        type: "image/png"
+      }
+    ],
+    shortcut: "/favicon-bd-subscription-hub.png",
+    apple: "/bd-subscription-hub-icon.png"
+  },
   openGraph: {
     title: "EasySub - Google Gemini Pro - 18 Months Access",
     description:
