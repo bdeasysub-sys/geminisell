@@ -28,9 +28,9 @@ export default async function PaymentReturnPage({ searchParams }: PaymentReturnP
       <main className="checkout-page">
         <div className="container">
           <header className="checkout-topbar">
-            <Link href="/" className="logo" aria-label="EasySub home">
-              <span className="logo-mark">E</span>
-              <span>EasySub</span>
+            <Link href="/" className="logo" aria-label="BD Subscription HUB home">
+              <span className="logo-mark">B</span>
+              <span>BD Subscription HUB</span>
             </Link>
             <Link className="checkout-back" href="/">
               Back
@@ -42,7 +42,7 @@ export default async function PaymentReturnPage({ searchParams }: PaymentReturnP
               <p className="eyebrow">Payment Verified</p>
               <h1>Payment Successful</h1>
               <p>
-                Your ZiniPay payment was verified successfully. Your Gemini Pro subscription
+                Your bKash payment was verified successfully. Your Gemini Pro subscription
                 link is ready below.
               </p>
             </div>
@@ -88,9 +88,9 @@ function PaymentError({ message }: { message: string }) {
     <main className="checkout-page">
       <div className="container">
         <header className="checkout-topbar">
-          <Link href="/" className="logo" aria-label="EasySub home">
-            <span className="logo-mark">E</span>
-            <span>EasySub</span>
+          <Link href="/" className="logo" aria-label="BD Subscription HUB home">
+            <span className="logo-mark">B</span>
+            <span>BD Subscription HUB</span>
           </Link>
           <Link className="checkout-back" href="/checkout">
             Checkout

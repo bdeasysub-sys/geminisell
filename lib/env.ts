@@ -34,7 +34,7 @@ export function getZiniPayApiKey() {
 }
 
 export function getZiniPayAmount() {
-  const value = getOptionalEnv("ZINIPAY_AMOUNT") ?? "790";
+  const value = getOptionalEnv("ZINIPAY_AMOUNT") ?? "590";
   const amount = Number(value);
 
   if (!Number.isInteger(amount) || amount <= 0) {

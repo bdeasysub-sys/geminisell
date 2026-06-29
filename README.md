@@ -120,7 +120,7 @@ Set these environment variables:
 
 ```text
 ZINIPAY_API_KEY="your-zinipay-brand-api-key"
-ZINIPAY_AMOUNT="790"
+ZINIPAY_AMOUNT="590"
 NEXT_PUBLIC_SITE_URL="https://yourdomain.com"
 ```
 

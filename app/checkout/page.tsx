@@ -53,9 +53,9 @@ export default function CheckoutPage() {
     <main className="checkout-page">
       <div className="container">
         <header className="checkout-topbar">
-          <Link href="/" className="logo" aria-label="EasySub home">
-            <span className="logo-mark">E</span>
-            <span>EasySub</span>
+          <Link href="/" className="logo" aria-label="BD Subscription HUB home">
+            <span className="logo-mark">B</span>
+            <span>BD Subscription HUB</span>
           </Link>
           <Link className="checkout-back" href="/">
             Back
@@ -67,13 +67,13 @@ export default function CheckoutPage() {
             <p className="eyebrow">Secure ZiniPay Checkout</p>
             <h1>Order Gemini Pro access with verified payment.</h1>
             <p>
-              Submit your customer details, pay through ZiniPay, and receive the next available
+              Submit your customer details, pay through bKash, and receive the next available
               subscription link after payment verification.
             </p>
             <dl className="checkout-facts">
               <div>
                 <dt>Price</dt>
-                <dd>790 tk</dd>
+                <dd>590 tk</dd>
               </div>
               <div>
                 <dt>Delivery</dt>
