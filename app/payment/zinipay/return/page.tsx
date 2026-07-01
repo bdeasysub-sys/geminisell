@@ -1,9 +1,17 @@
 import Link from "next/link";
+import type { Metadata } from "next";
 import { cookies } from "next/headers";
 import { CopyLinkButton } from "@/app/payment/zinipay/return/CopyLinkButton";
 import { ApiError } from "@/lib/api-errors";
 import { finalizeZiniPayInvoice } from "@/lib/zinipay-order";
 import { ZINIPAY_INVOICE_COOKIE } from "@/lib/zinipay";
+
+export const metadata: Metadata = {
+  title: "BD Subscription HuB",
+  openGraph: {
+    title: "BD Subscription HuB"
+  }
+};
 
 type PaymentReturnPageProps = {
   searchParams: Promise<Record<string, string | string[] | undefined>>;
@@ -28,9 +36,9 @@ export default async function PaymentReturnPage({ searchParams }: PaymentReturnP
       <main className="checkout-page">
         <div className="container">
           <header className="checkout-topbar">
-            <Link href="/" className="logo" aria-label="BD Subscription HUB home">
+            <Link href="/" className="logo" aria-label="BD Subscription HuB home">
               <span className="logo-mark">B</span>
-              <span>BD Subscription HUB</span>
+              <span>BD Subscription HuB</span>
             </Link>
             <Link className="checkout-back" href="/">
               Back
@@ -88,9 +96,9 @@ function PaymentError({ message }: { message: string }) {
     <main className="checkout-page">
       <div className="container">
         <header className="checkout-topbar">
-          <Link href="/" className="logo" aria-label="BD Subscription HUB home">
+          <Link href="/" className="logo" aria-label="BD Subscription HuB home">
             <span className="logo-mark">B</span>
-            <span>BD Subscription HUB</span>
+            <span>BD Subscription HuB</span>
           </Link>
           <Link className="checkout-back" href="/checkout">
             Checkout

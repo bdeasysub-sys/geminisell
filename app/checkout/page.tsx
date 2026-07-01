@@ -53,9 +53,9 @@ export default function CheckoutPage() {
     <main className="checkout-page">
       <div className="container">
         <header className="checkout-topbar">
-          <Link href="/" className="logo" aria-label="BD Subscription HUB home">
+          <Link href="/" className="logo" aria-label="BD Subscription HuB home">
             <span className="logo-mark">B</span>
-            <span>BD Subscription HUB</span>
+            <span>BD Subscription HuB</span>
           </Link>
           <Link className="checkout-back" href="/">
             Back
