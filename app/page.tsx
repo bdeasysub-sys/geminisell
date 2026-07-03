@@ -251,9 +251,9 @@ export default function HomePage() {
             <p>Premium Digital Access, Simplified.</p>
           </div>
           <div className="footer-links">
-            <a href="#home">Facebook</a>
-            <a href="#home">WhatsApp</a>
-            <a href="#home">Telegram</a>
+            <a href="https://www.facebook.com/bdsubshub">Facebook</a>
+            <a href="https://wa.me/8801726710485">WhatsApp</a>
+            <a href="https://t.me/bdsubscriptionhub">Telegram</a>
           </div>
         </div>
         <div className="container footer-bottom">
