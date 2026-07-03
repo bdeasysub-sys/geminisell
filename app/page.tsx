@@ -70,10 +70,10 @@ export default function HomePage() {
               <div className="orb orb-one"></div>
               <div className="orb orb-two"></div>
               <div className="video-card">
-                <div className="video-label">এখানে একটি ডেমো ভিডিও দেখুন</div>
+                <div className="video-label">How to activate Gemini AI Pro (18 মাস)</div>
                 <div className="video-frame">
                   <iframe
-                    src="https://www.youtube.com/embed/5bnBpu8WgWA"
+                    src="https://www.youtube.com/embed/RxgbfKFveqM"
                     title="YouTube video player"
                     frameBorder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -82,8 +82,7 @@ export default function HomePage() {
                 </div>
               </div>
             </div>
-          </div>
-        </section>
+          </div>        </section>
 
         <section id="features" className="section">
           <div className="container">
