@@ -18,7 +18,7 @@ export async function GET(request: NextRequest) {
     const result = await finalizeZiniPayInvoice(invoiceId);
     const token = await createPaymentSuccessToken({
       orderId: result.order.id,
-      paymentId: result.order.paymentId
+      invoiceId
     });
     const response = NextResponse.redirect(new URL("/payment/success", request.url), 303);
 

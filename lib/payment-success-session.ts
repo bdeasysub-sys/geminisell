@@ -10,12 +10,12 @@ const PAYMENT_SUCCESS_ISSUER = "bd-subscription-hub";
 
 export type PaymentSuccessSession = {
   orderId: number;
-  paymentId: string;
+  invoiceId: string;
 };
 
 type PaymentSuccessJwtPayload = {
   orderId?: unknown;
-  paymentId?: unknown;
+  invoiceId?: unknown;
   purpose?: unknown;
 };
 
@@ -24,7 +24,7 @@ export async function createPaymentSuccessToken(session: PaymentSuccessSession) 
 
   return new SignJWT({
     orderId: session.orderId,
-    paymentId: session.paymentId,
+    invoiceId: session.invoiceId,
     purpose: PAYMENT_SUCCESS_AUDIENCE
   })
     .setProtectedHeader({ alg: "HS256" })
@@ -69,15 +69,15 @@ export async function verifyPaymentSuccessToken(token?: string | null) {
       typeof parsedPayload.orderId !== "number" ||
       !Number.isInteger(parsedPayload.orderId) ||
       parsedPayload.orderId <= 0 ||
-      typeof parsedPayload.paymentId !== "string" ||
-      parsedPayload.paymentId.trim().length < 1
+      typeof parsedPayload.invoiceId !== "string" ||
+      parsedPayload.invoiceId.trim().length < 1
     ) {
       return null;
     }
 
     return {
       orderId: parsedPayload.orderId,
-      paymentId: parsedPayload.paymentId
+      invoiceId: parsedPayload.invoiceId
     } satisfies PaymentSuccessSession;
   } catch {
     return null;

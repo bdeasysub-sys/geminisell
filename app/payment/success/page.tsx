@@ -29,13 +29,17 @@ export default async function PaymentSuccessPage() {
       where: { id: session.orderId },
       select: {
         id: true,
+        email: true,
+        phone: true,
         paymentId: true,
         assignedLink: true
       }
     }),
     prisma.paymentIntent.findUnique({
-      where: { invoiceId: session.paymentId },
+      where: { invoiceId: session.invoiceId },
       select: {
+        email: true,
+        phone: true,
         status: true
       }
     })
@@ -43,8 +47,10 @@ export default async function PaymentSuccessPage() {
 
   if (
     !order ||
-    order.paymentId !== session.paymentId ||
-    paymentIntent?.status !== PaymentIntentStatus.completed
+    !paymentIntent ||
+    paymentIntent.status !== PaymentIntentStatus.completed ||
+    paymentIntent.email !== order.email ||
+    paymentIntent.phone !== order.phone
   ) {
     redirect("/checkout");
   }
