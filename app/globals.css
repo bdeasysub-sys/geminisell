@@ -740,6 +740,12 @@ a {
   text-transform: uppercase;
 }
 
+.checkout-link-actions {
+  display: grid;
+  gap: 10px;
+}
+
+.checkout-open-button,
 .checkout-copy-button {
   min-height: 44px;
   gap: 8px;

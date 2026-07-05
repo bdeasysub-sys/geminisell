@@ -103,6 +103,7 @@ export function trackPurchase({ orderId, paymentId }: PurchaseInput) {
   );
 
   trackGoogleEvent("purchase", {
+    event_id: paymentId,
     transaction_id: paymentId,
     order_id: orderId,
     payment_id: paymentId,

@@ -28,7 +28,7 @@ export function CopyLinkButton({ value }: { value: string }) {
 
   return (
     <button
-      className="btn btn-primary checkout-copy-button"
+      className="btn btn-secondary checkout-copy-button"
       type="button"
       onClick={handleCopy}
       aria-live="polite"
