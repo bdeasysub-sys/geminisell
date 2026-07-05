@@ -464,7 +464,12 @@ function LinksTable({
             <tr key={link.id} className="border-t border-white/10 align-top">
               <td className="px-3 py-3 text-slate-300">{link.id}</td>
               <td className="max-w-[380px] px-3 py-3">
-                <a className="break-all text-sky-200 hover:text-sky-100" href={link.link} target="_blank">
+                <a
+                  className="break-all text-sky-200 hover:text-sky-100"
+                  href={link.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   {link.link}
                 </a>
               </td>
@@ -544,7 +549,12 @@ function OrdersTable({
               <td className="px-3 py-3 text-slate-300">{order.phone}</td>
               <td className="px-3 py-3 text-slate-300">{order.paymentId}</td>
               <td className="max-w-[320px] px-3 py-3">
-                <a className="break-all text-sky-200 hover:text-sky-100" href={order.assignedLink} target="_blank">
+                <a
+                  className="break-all text-sky-200 hover:text-sky-100"
+                  href={order.assignedLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   {order.assignedLink}
                 </a>
               </td>

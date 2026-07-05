@@ -2,14 +2,16 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { cookies } from "next/headers";
 import { CopyLinkButton } from "@/app/payment/zinipay/return/CopyLinkButton";
+import { FacebookPurchase } from "@/components/analytics/FacebookPurchase";
 import { ApiError } from "@/lib/api-errors";
 import { finalizeZiniPayInvoice } from "@/lib/zinipay-order";
 import { ZINIPAY_INVOICE_COOKIE } from "@/lib/zinipay";
 
 export const metadata: Metadata = {
   title: "BD Subscription HuB",
-  openGraph: {
-    title: "BD Subscription HuB"
+  robots: {
+    index: false,
+    follow: false
   }
 };
 
@@ -34,6 +36,7 @@ export default async function PaymentReturnPage({ searchParams }: PaymentReturnP
 
     return (
       <main className="checkout-page">
+        <FacebookPurchase orderId={result.order.id} paymentId={result.order.paymentId} />
         <div className="container">
           <header className="checkout-topbar">
             <Link href="/" className="logo" aria-label="BD Subscription HuB home">
@@ -60,7 +63,11 @@ export default async function PaymentReturnPage({ searchParams }: PaymentReturnP
                 <p className="checkout-result-title">Payment Successful</p>
                 <div className="checkout-link-card">
                   <span>Assigned Subscription Link</span>
-                  <a href={result.order.assignedLink} target="_blank" rel="noreferrer">
+                  <a
+                    href={result.order.assignedLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     {result.order.assignedLink}
                   </a>
                   <CopyLinkButton value={result.order.assignedLink} />

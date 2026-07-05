@@ -1,17 +1,41 @@
 import type { Metadata, Viewport } from "next";
 import Script from "next/script";
-import { getCheckoutUrl } from "@/lib/env";
+import { FacebookEvents } from "@/components/analytics/FacebookEvents";
+import { PRODUCT_ANALYTICS } from "@/lib/analytics";
+import { getCheckoutUrl, getSiteUrl } from "@/lib/env";
 import "./landing.css";
 
+const pageTitle = "Gemini AI Pro (18 মাস)";
+const pageDescription =
+  "bdsubscriptionhub-এ Gemini AI Pro 18 মাসের প্রিমিয়াম এক্সেস কিনুন। দ্রুত ডেলিভারি, নিরাপদ একাউন্ট এবং ২৪/৭ সাপোর্ট।";
+const productImage = "/assets/easysub-gemini-hero.png";
+
 export const metadata: Metadata = {
-  title: "BD Subscription HUB | Gemini AI Pro (18 মাস)",
-  description:
-    "bdsubscriptionhub-এ Gemini AI Pro 18 মাসের প্রিমিয়াম এক্সেস কিনুন। দ্রুত ডেলিভারি, নিরাপদ একাউন্ট এবং ২৪/৭ সাপোর্ট।",
+  title: pageTitle,
+  description: pageDescription,
+  alternates: {
+    canonical: "/"
+  },
   openGraph: {
-    title: "BD Subscription HUB | Gemini AI Pro (18 মাস)",
-    description:
-      "bdsubscriptionhub-এ Gemini AI Pro 18 মাসের প্রিমিয়াম এক্সেস কিনুন। দ্রুত ডেলিভারি, নিরাপদ একাউন্ট এবং ২৪/৭ সাপোর্ট।",
-    type: "website"
+    title: `BD Subscription HUB | ${pageTitle}`,
+    description: pageDescription,
+    url: "/",
+    siteName: "BD Subscription HUB",
+    type: "website",
+    images: [
+      {
+        url: productImage,
+        width: 1200,
+        height: 630,
+        alt: "Gemini AI Pro 18 Months subscription offer"
+      }
+    ]
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `BD Subscription HUB | ${pageTitle}`,
+    description: pageDescription,
+    images: [productImage]
   }
 };
 
@@ -21,9 +45,37 @@ export const viewport: Viewport = {
 
 export default function HomePage() {
   const checkoutUrl = getCheckoutUrl();
+  const siteUrl = getSiteUrl();
+  const productJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: PRODUCT_ANALYTICS.contentName,
+    category: PRODUCT_ANALYTICS.contentCategory,
+    description: pageDescription,
+    image: `${siteUrl}${productImage}`,
+    brand: {
+      "@type": "Brand",
+      name: "Google Gemini"
+    },
+    offers: {
+      "@type": "Offer",
+      availability: "https://schema.org/InStock",
+      price: PRODUCT_ANALYTICS.value,
+      priceCurrency: PRODUCT_ANALYTICS.currency,
+      seller: {
+        "@type": "Organization",
+        name: "BD Subscription HUB"
+      },
+      url: `${siteUrl}${checkoutUrl}`
+    }
+  };
 
   return (
     <div className="landing-page">
+      <FacebookEvents
+        addToCartSelector="[data-analytics-event='add-to-cart']"
+        trackViewContentEvent
+      />
       <header className="site-header">
         <div className="container nav-wrap">
           <a href="#home" className="brand" aria-label="BD Subscription HUB হোম">
@@ -35,7 +87,7 @@ export default function HomePage() {
             <a href="#features">সুবিধাসমূহ</a>
             <a href="#faq">FAQ</a>
           </nav>
-          <a href={checkoutUrl} className="btn btn-small">
+          <a href={checkoutUrl} className="btn btn-small" data-analytics-event="add-to-cart">
             Order Now
           </a>
         </div>
@@ -52,7 +104,7 @@ export default function HomePage() {
                 সর্বোচ্চ পারফরম্যান্সে আপনার ডিজিটাল কাজগুলো সম্পন্ন করুন।
               </p>
               <div className="hero-actions">
-                <a href={checkoutUrl} className="btn">
+                <a href={checkoutUrl} className="btn" data-analytics-event="add-to-cart">
                   এখনই অর্ডার করুন
                 </a>
                 <a href="#features" className="btn btn-secondary">
@@ -74,10 +126,12 @@ export default function HomePage() {
                 <div className="video-frame">
                   <iframe
                     src="https://www.youtube.com/embed/RxgbfKFveqM"
-                    title="YouTube video player"
+                    title="How to activate Gemini AI Pro"
                     frameBorder="0"
+                    loading="lazy"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                     allowFullScreen
+                    referrerPolicy="strict-origin-when-cross-origin"
                   ></iframe>
                 </div>
               </div>
@@ -188,7 +242,7 @@ export default function HomePage() {
                 <p>এককালীন পেমেন্ট</p>
               </div>
               <div className="offer-buttons">
-                <a href={checkoutUrl} className="btn btn-primary">
+                <a href={checkoutUrl} className="btn btn-primary" data-analytics-event="add-to-cart">
                   এখনই অর্ডার করুন
                 </a>
               </div>
@@ -261,6 +315,12 @@ export default function HomePage() {
         </div>
       </footer>
 
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(productJsonLd).replace(/</g, "\\u003c")
+        }}
+      />
       <Script src="/landing/script.js" strategy="afterInteractive" />
     </div>
   );

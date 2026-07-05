@@ -1,21 +1,39 @@
-import Script from "next/script";
 import type { Metadata, Viewport } from "next";
+import { FacebookEvents } from "@/components/analytics/FacebookEvents";
+import { FacebookPixel } from "@/components/analytics/FacebookPixel";
+import { GoogleAnalytics } from "@/components/analytics/GoogleAnalytics";
+import { MicrosoftClarity } from "@/components/analytics/MicrosoftClarity";
 import "./globals.css";
 
+const siteUrl = new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000");
+const siteName = "BD Subscription HUB";
+const defaultTitle = `${siteName} | Gemini AI Pro 18 Months`;
+const defaultDescription =
+  "Order Gemini AI Pro 18 Months access from BD Subscription HUB with fast delivery, secure checkout, and verified digital subscription support.";
+
 export const metadata: Metadata = {
-  metadataBase: new URL(
-    process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000"
-  ),
-  title: "EasySub | Google Gemini Pro - 18 Months Access",
-  description:
-    "Order Google Gemini Pro 18 Months Access from EasySub with Gemini Advanced, 5TB Google One storage, AI in Gmail, Docs and Sheets, and fast delivery.",
+  metadataBase: siteUrl,
+  applicationName: siteName,
+  title: {
+    default: defaultTitle,
+    template: `%s | ${siteName}`
+  },
+  description: defaultDescription,
   keywords: [
-    "EasySub",
+    "BD Subscription HUB",
+    "bdsubscriptionhub",
     "Google Gemini Pro",
+    "Gemini AI Pro",
     "Gemini Advanced",
-    "5TB Google One",
-    "digital subscription",
+    "digital subscription Bangladesh",
+    "AI subscription Bangladesh"
   ],
+  authors: [{ name: siteName }],
+  creator: siteName,
+  publisher: siteName,
+  alternates: {
+    canonical: "/"
+  },
   icons: {
     icon: [
       {
@@ -28,16 +46,43 @@ export const metadata: Metadata = {
     apple: "/bd-subscription-hub-icon.png",
   },
   openGraph: {
-    title: "EasySub - Google Gemini Pro - 18 Months Access",
-    description:
-      "Get Gemini Advanced, 5TB Google One Storage, AI in Gmail, Docs and Sheets. Instant delivery after payment.",
+    title: defaultTitle,
+    description: defaultDescription,
+    url: "/",
+    siteName,
     type: "website",
-    images: ["/assets/easysub-gemini-hero.png"],
+    locale: "en_BD",
+    images: [
+      {
+        url: "/assets/easysub-gemini-hero.png",
+        width: 1200,
+        height: 630,
+        alt: "Gemini AI Pro 18 Months subscription offer"
+      }
+    ]
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: defaultTitle,
+    description: defaultDescription,
+    images: ["/assets/easysub-gemini-hero.png"]
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1
+    }
   },
 };
 
 export const viewport: Viewport = {
-  themeColor: "#0B0F19",
+  colorScheme: "dark",
+  themeColor: "#050816",
 };
 
 export default function RootLayout({
@@ -50,51 +95,10 @@ export default function RootLayout({
       <body>
         {children}
 
-        {/* Microsoft Clarity */}
-        <Script id="microsoft-clarity" strategy="afterInteractive">
-          {`
-            (function(c,l,a,r,i,t,y){
-              c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-              t=l.createElement(r);
-              t.async=1;
-              t.src="https://www.clarity.ms/tag/"+i;
-              y=l.getElementsByTagName(r)[0];
-              y.parentNode.insertBefore(t,y);
-            })(window, document, "clarity", "script", "xfjv1njfnw");
-          `}
-        </Script>
-<Script id="meta-pixel" strategy="afterInteractive">
-  {`
-    !function(f,b,e,v,n,t,s)
-    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-    if(!f._fbq)f._fbq=n;
-    n.push=n;
-    n.loaded=!0;
-    n.version='2.0';
-    n.queue=[];
-    t=b.createElement(e);
-    t.async=!0;
-    t.src=v;
-    s=b.getElementsByTagName(e)[0];
-    s.parentNode.insertBefore(t,s);
-    }(window, document,'script',
-    'https://connect.facebook.net/en_US/fbevents.js');
-
-    fbq('init', '1351610486295544');
-    fbq('track', 'PageView');
-  `}
-</Script>
-
-<noscript>
-  <img
-    height="1"
-    width="1"
-    style={{ display: "none" }}
-    src="https://www.facebook.com/tr?id=1351610486295544&ev=PageView&noscript=1"
-    alt=""
-  />
-</noscript>
+        <FacebookPixel />
+        <GoogleAnalytics />
+        <MicrosoftClarity />
+        <FacebookEvents trackPageViews />
       </body>
     </html>
   );

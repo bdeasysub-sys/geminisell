@@ -3,6 +3,8 @@
 import Link from "next/link";
 import { useState } from "react";
 import type { FormEvent } from "react";
+import { FacebookEvents } from "@/components/analytics/FacebookEvents";
+import { trackAddPaymentInfo } from "@/lib/analytics";
 
 type CheckoutState =
   | { status: "idle" }
@@ -25,6 +27,7 @@ export default function CheckoutPage() {
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    trackAddPaymentInfo();
     setState({ status: "loading" });
 
     try {
@@ -51,6 +54,7 @@ export default function CheckoutPage() {
 
   return (
     <main className="checkout-page">
+      <FacebookEvents trackCheckoutStart />
       <div className="container">
         <header className="checkout-topbar">
           <Link href="/" className="logo" aria-label="BD Subscription HuB home">
